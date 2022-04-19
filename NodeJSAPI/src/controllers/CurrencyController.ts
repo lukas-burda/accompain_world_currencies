@@ -6,9 +6,10 @@ const currencyRepository = new CurrencyRepository();
 const currencyServices = new CurrencyServices();
 
 export class CurrencyController{
-    GetCurrencyLists(req:Request, res:Response){
-        let currencies = currencyServices.GetCurrencyLists();
-        res.status(200).json({message: "Available Currencies", data: currencies})
+    async GetCurrencyLists(req:Request, res:Response){
+        let currencies = await currencyServices.GetCurrencyLists();
+        console.log(currencies);
+        await res.status(200).json({message: "Available Currencies", data: currencies})
     }
 
     GetCurrencyListsByCode(req:Request, res:Response){

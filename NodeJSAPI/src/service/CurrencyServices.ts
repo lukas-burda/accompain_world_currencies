@@ -7,19 +7,20 @@ const apiVersion = '1/';
 const date = 'latest/'
 const endpoint = "/"
 //const externalCurrencyApi_finalUrl = `${externalCurrencyApi_base}@${apiVersion}/${date}/${endpoint}`;
+let currency = new Currency();
 
 export class CurrencyServices{
     
-    GetCurrencyLists(){
-        var currencies;
-        axios.get(extCurrencyApi_base + apiVersion + date + 'currencies.json')
-        .then(function(res:any){
-            console.log(res.data)
+    async GetCurrencyLists(): Promise<Currency>{
+        await axios.get(extCurrencyApi_base + apiVersion + date + 'currencies.json')
+        .then(async function(res:any){
+            currency = res.data;
+            return await currency;
         })
         .catch(function(error:Error){
             return error;
         })
-        return currencies;
+        return currency;
     }
     GetCurrencyListsByDate(date:String){
         axios.get(extCurrencyApi_base + apiVersion + date + 'currencies')
