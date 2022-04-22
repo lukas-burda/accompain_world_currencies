@@ -1,15 +1,12 @@
-import { Request, response, Response } from "express";
+import { Request, Response } from "express";
+import { CurrencyServices } from "../domain/service/CurrencyServices";
 import { CurrencyRepository } from "../repositories/CurrencyRepository";
-import { CurrencyServices } from "../service/CurrencyServices";
 
-const currencyRepository = new CurrencyRepository();
 const currencyServices = new CurrencyServices();
 
 export class CurrencyController{
     async GetCurrencyLists(req:Request, res:Response){
-        let currencies = await currencyServices.GetCurrencyLists();
-        console.log(currencies);
-        await res.status(200).json({message: "Available Currencies", data: currencies})
+        res.status(200).json({ message: "Available Currencies", data: await currencyServices.GetCurrencyLists() })
     }
 
     GetCurrencyListsByCode(req:Request, res:Response){
