@@ -6,32 +6,37 @@ const extCurrencyApi_base = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-ap
 const apiVersion = '1/';
 const date = 'latest/'
 
-let currency:string;
-export class CurrencyServices{
-    
-    async GetCurrencyLists(): Promise<String>{
-        
-        await axios.get(extCurrencyApi_base + apiVersion + date + 'currencies.min.json')
-            .then(async function(res:any){
+let currency: string;
+export class CurrencyServices {
+
+    async GetCurrencyListsByDate(date: string) {
+        console.log(date)
+        //1/2020-11-24/
+        axios.get(extCurrencyApi_base + apiVersion + date + 'currencies/btc.json')
+            .then(async function (res: any) {
                 return currency = res.data;
             })
-            .catch(function(error:Error){
+            .catch(function (error: Error) {
                 return currency = error.message;
             })
         return currency;
     }
-    async GetCurrencyListsByDate(date:String){
-         axios.get(extCurrencyApi_base + apiVersion + date + 'currencies.min.json')
-        .then(async function(response:Response){
-            console.log(response.json());
-            return response.json();
-        }) 
+
+    async GetCurrencyByCode(base: String,code: String) {
+    //     /currencies/{currencyCode}/{currencyCode}
+        axios.get(extCurrencyApi_base+'')
+    //     https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/{base}/{code}.json
     }
-    async GetCurrencyByCode(currencyCode:String){
-        axios.get(extCurrencyApi_base + apiVersion + date + 'currencies/' + currencyCode)
-        .then(async function(response:Response){
-            console.log(response.json())
-            return response.json();
-        })
+
+    async GetCurrencyLists(): Promise<String> {
+
+        await axios.get(extCurrencyApi_base + apiVersion + date + 'currencies.min.json')
+            .then(async function (res: any) {
+                return currency = res.data;
+            })
+            .catch(function (error: Error) {
+                return currency = error.message;
+            })
+        return currency;
     }
 }

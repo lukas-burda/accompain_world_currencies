@@ -3,6 +3,7 @@ import { routes } from "./configs/routes";
 
 const app = express();
 
+app.use(express.urlencoded());
 app.use(express.json());
 app.use(routes);
 

@@ -1,10 +1,10 @@
-import { application, Router } from "express";
+import { Router } from "express";
 import { CurrencyController } from "../controllers/CurrencyController";
 
 const routes = Router();
 
-// routes to-do
-//C# chama o Get
-routes.get("/getCurrencyLists", new CurrencyController().GetCurrencyLists)
+routes.get("/availablecurrencies", new CurrencyController().GetCurrencyLists)
+routes.get("/currency/:date", new CurrencyController().GetCurrencyListsByDate)
+routes.get("/currency/:base/:code", new CurrencyController().GetCurrencyListsByCode)
 
 export { routes };

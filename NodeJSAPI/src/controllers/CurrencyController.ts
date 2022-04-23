@@ -1,21 +1,18 @@
 import { Request, Response } from "express";
 import { CurrencyServices } from "../domain/service/CurrencyServices";
-import { CurrencyRepository } from "../repositories/CurrencyRepository";
 
 const currencyServices = new CurrencyServices();
 
 export class CurrencyController{
+    async GetCurrencyListsByDate(req:Request, res:Response) {
+        console.log(req.query.date)
+        res.status(200).json({ data: await currencyServices.GetCurrencyListsByDate(req.params.date) })
+    }
+    async GetCurrencyListsByCode(req:Request, res:Response) {
+        throw new Error("Method not implemented.");
+    }
+
     async GetCurrencyLists(req:Request, res:Response){
-        res.status(200).json({ message: "Available Currencies", data: await currencyServices.GetCurrencyLists() })
-    }
-
-    GetCurrencyListsByCode(req:Request, res:Response){
-        const currencies = currencyServices.GetCurrencyListsByDate(req.params.date);
-        res.status(200).json({message: "Available Currencies", data: currencies})
-    }
-
-    GetCurrencyByCode(req:Request, res:Response){
-        const currency = currencyServices.GetCurrencyByCode(req.params.currencyCode);
-        res.status(200).json({message:'Price'})
+        res.status(200).json({ data: await currencyServices.GetCurrencyLists() })
     }
 }
