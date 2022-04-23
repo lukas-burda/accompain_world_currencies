@@ -26,7 +26,6 @@ export class CurrencyServices {
                 return currency = error.message;
             })
         return currency;
-    //     https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/{base}/{code}.json
     }
 
     async GetCurrencyLists(): Promise<String> {
