@@ -5,10 +5,10 @@ const currencyServices = new CurrencyServices();
 
 export class CurrencyController{
     async GetCurrencyListsByDate(req:Request, res:Response) {
-        res.status(200).json({ data: await currencyServices.GetCurrencyListsByDate(req.params.base,req.params.date) })
+        res.status(200).json({ data: await currencyServices.GetCurrencyListsByDate(req.params.baseCurrencyCode,req.params.date) })
     }
-    async GetCurrencyListsByCode(req:Request, res:Response) {
-        throw new Error("Method not implemented.");
+    async GetCurrencyByCode(req:Request, res:Response) {
+        res.status(200).json({ data: await currencyServices.GetCurrencyByCode(req.params.baseCurrencyCode,req.params.CurrencyCode) })
     }
 
     async GetCurrencyLists(req:Request, res:Response){

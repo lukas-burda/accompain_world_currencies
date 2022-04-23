@@ -1,5 +1,3 @@
-import { Currency } from "../models/Currency";
-
 const axios = require('axios')
 
 const external_url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/';
@@ -9,7 +7,6 @@ let currency: string;
 export class CurrencyServices {
 
     async GetCurrencyListsByDate(base:string, date: string): Promise<String> {
-        console.log(external_url + date + 'currencies/' + base + '.json')
         await axios.get(external_url + date + '/currencies/' + base + '.json')
             .then(async function (res: any) {
                 return currency = res.data;
@@ -20,9 +17,16 @@ export class CurrencyServices {
         return currency;
     }
 
-    async GetCurrencyByCode(base: String,code: String) {
-    //     /currencies/{currencyCode}/{currencyCode}
-        axios.get(external_url+'')
+    async GetCurrencyByCode(base: String, code: String) {
+        console.log(external_url + date + '/currencies/' + base + '/' + code +'.json')
+        await axios.get(external_url + date + '/currencies/' + base + '/' + code +'.json')
+            .then(async function (res: any) {
+                return currency = res.data;
+            })
+            .catch(function (error: Error) {
+                return currency = error.message;
+            })
+        return currency;
     //     https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/{base}/{code}.json
     }
 
