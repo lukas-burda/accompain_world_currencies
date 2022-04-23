@@ -18,7 +18,6 @@ export class CurrencyServices {
     }
 
     async GetCurrencyByCode(base: String, code: String) {
-        console.log(external_url + date + '/currencies/' + base + '/' + code +'.json')
         await axios.get(external_url + date + '/currencies/' + base + '/' + code +'.json')
             .then(async function (res: any) {
                 return currency = res.data;
@@ -27,7 +26,6 @@ export class CurrencyServices {
                 return currency = error.message;
             })
         return currency;
-    //     https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/{base}/{code}.json
     }
 
     async GetCurrencyLists(): Promise<String> {
