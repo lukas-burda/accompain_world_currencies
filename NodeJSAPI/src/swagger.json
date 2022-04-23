@@ -74,8 +74,8 @@
         "/currencyvaluebased/{baseCurrencyCode}/{CurrencyCode}": {
             "get": {
                 "tags": ["Currency"],
-                "summary": "Getting currencies by code",
-                "description": "Getiing currency within 2 codes to analyze the price",
+                "summary": "Converting currencies",
+                "description": "Converting currency value",
                 "produces": ["application/json"],
                 "parameters": [
                     {
