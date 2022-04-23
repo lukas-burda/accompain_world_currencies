@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Currency Documentation",
+        "description": "This is an API for converting any type of currencies",
+        "version": "1.0.0",
+        "contact": {
+            "email": "lukasburda@gmail.com"
+        }
+    },
+    "paths": {
+        "/availablecurrencies": {
+            "get": {
+                "tags": ["Currency"],
+                "summary": "Getting avaiable currencies in the external API",
+                "description": "Get all currencies avaiables for consuming in our API",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/currenciesbydate/{baseCurrencyCode}/{date}": {
+            "get": {
+                "tags": ["Currency"],
+                "summary": "Getting currencies by date and which currency we want",
+                "description": "Getiing currency within a date and code",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "baseCurrencyCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date US",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "Request failed with status code 403"
+                    }
+                }
+            }
+            
+        },
+        "/currencyvaluebased/{baseCurrencyCode}/{CurrencyCode}": {
+            "get": {
+                "tags": ["Currency"],
+                "summary": "Getting currencies by code",
+                "description": "Getiing currency within 2 codes to analyze the price",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "baseCurrencyCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "CurrencyCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "403": {
+                        "description": "Request failed with status code 403"
+                    }
+                }
+            }
+        }
+    }
+}
