@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "accompain_world_currencies_
 		{5C89FE78-1E96-443F-8C11-2D219A183CBE} = {5C89FE78-1E96-443F-8C11-2D219A183CBE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "accompain_world_currencies_Core", "accompain_world_currencies_Core\accompain_world_currencies_Core.csproj", "{D196D30E-1C2F-46A8-84C8-6274F6FFD6B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "accompain_world_currencies_Core", "accompain_world_currencies_Core\accompain_world_currencies_Core.csproj", "{D196D30E-1C2F-46A8-84C8-6274F6FFD6B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "accompain_world_currencies_Infraestructure", "accompain_world_currencies_Infraestructure\accompain_world_currencies_Infraestructure.csproj", "{5C89FE78-1E96-443F-8C11-2D219A183CBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "accompain_world_currencies_Infraestructure", "accompain_world_currencies_Infraestructure\accompain_world_currencies_Infraestructure.csproj", "{5C89FE78-1E96-443F-8C11-2D219A183CBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

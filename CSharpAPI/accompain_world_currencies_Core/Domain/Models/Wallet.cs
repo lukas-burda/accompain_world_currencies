@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace accompain_world_currencies_Core.Domain.Models
 {
-    internal class Wallet
+    public class Wallet
     {
         public double Value { get; set; }
         public string Name { get; set; }

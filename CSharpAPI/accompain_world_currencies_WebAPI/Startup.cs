@@ -1,3 +1,5 @@
+using accompain_world_currencies_Core.Domain.Interfaces;
+using accompain_world_currencies_Infraestructure.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,7 @@ namespace accompain_world_currencies_WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IWalletRepository, WalletRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
