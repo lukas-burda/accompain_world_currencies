@@ -8,10 +8,12 @@ namespace accompain_world_currencies_Core.Domain.Models
 {
     public class Wallet
     {
-        public double Value { get; set; }
-        public string Name { get; set; }
-        public string CurrencyCodeBased { get; set; }
-        public List<Currency> accompaniedCurrencies { get; set; }
+        public int Id { get; set; }
+        public double MoneyQuantity { get; set; }
+        public string Name{ get; set; }
+        public string BasedCurrencyCode { get; set; }
+        public List<Currency> FavoriteCurrencyList { get; set; }
         public DateTime LastUpdate { get; set; }
+
     }
 }

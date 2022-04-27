@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace accompain_world_currencies_Core.Domain.Models
+namespace accompain_world_currencies_Data.Models
 {
-    public class Currency
+    public class CurrencyDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
     }

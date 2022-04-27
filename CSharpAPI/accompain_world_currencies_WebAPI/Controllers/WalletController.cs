@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using accompain_world_currencies_Core.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,8 +26,9 @@ namespace accompain_world_currencies_WebAPI.Controllers
 
         // POST api/<WalletController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Wallet value)
         {
+            
         }
 
         // PUT api/<WalletController>/5
