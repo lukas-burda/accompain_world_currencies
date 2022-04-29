@@ -28,7 +28,7 @@ export class CurrencyServices {
         return currency;
     }
 
-    async GetCurrencyLists(): Promise<String> {
+    async GetCurrencyLists(): Promise<String[]> {
 
         await axios.get(external_url + date + 'currencies.min.json')
             .then(async function (res: any) {

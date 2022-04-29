@@ -11,8 +11,8 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 {
     public class WalletServices : IWalletServices
     {
-        private readonly WalletRepository _repository;
-        public WalletServices(WalletRepository walletRepository)
+        private readonly IWalletRepository _repository;
+        public WalletServices(IWalletRepository walletRepository)
         {
             _repository = walletRepository;
         }

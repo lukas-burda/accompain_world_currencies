@@ -20,11 +20,11 @@ namespace accompain_world_currencies_WebAPI.Controllers
 
         // GET api/<WalletController>/availablecurrencies
         
-        [HttpGet("/availablecurrencies")]
-        public Wallet GetAvailableCurrencies(int id)
+        [HttpGet("availablecurrencies")]
+        public string GetAvailableCurrencies()
         {
             _currenciesApiServices.GetAvailableCurrencies();
-            return new Wallet();
+            return "";
         }
 
         // GET api/<WalletController>/<id>

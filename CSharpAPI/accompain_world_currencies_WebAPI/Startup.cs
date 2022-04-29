@@ -29,6 +29,10 @@ namespace accompain_world_currencies_WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IWalletServices, WalletServices>();
+            services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddTransient<ICurrenciesApiServices, CurrenciesAPIServices>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
