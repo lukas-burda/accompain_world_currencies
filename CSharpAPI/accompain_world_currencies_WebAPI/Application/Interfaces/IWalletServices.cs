@@ -1,13 +1,13 @@
-﻿using accompain_world_currencies_Core.Domain.Models;
+﻿using accompain_world_currencies_WebAPI.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace accompain_world_currencies_Core.Domain.Interfaces
+namespace accompain_world_currencies_WebAPI.Application.Interfaces
 {
-    public interface IWalletRepository
+    public interface IWalletServices
     {
         public Wallet Save(Wallet obj);
         public Wallet Update(Wallet obj);

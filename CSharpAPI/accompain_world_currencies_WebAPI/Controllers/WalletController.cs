@@ -1,8 +1,7 @@
-﻿using accompain_world_currencies_Core.Domain.Models;
+﻿using accompain_world_currencies_WebAPI.Application.Interfaces;
+using accompain_world_currencies_WebAPI.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace accompain_world_currencies_WebAPI.Controllers
 {
@@ -10,18 +9,29 @@ namespace accompain_world_currencies_WebAPI.Controllers
     [ApiController]
     public class WalletController : ControllerBase
     {
-        // GET: api/<WalletController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IWalletServices _services;
+        private readonly ICurrenciesApiServices _currenciesApiServices;
+
+        public WalletController(IWalletServices walletServices, ICurrenciesApiServices currenciesApiServices)
         {
-            return new string[] { "value1", "value2" };
+            _services = walletServices;
+            _currenciesApiServices = currenciesApiServices;
         }
 
-        // GET api/<WalletController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/<WalletController>/availablecurrencies
+        
+        [HttpGet("/availablecurrencies")]
+        public Wallet GetAvailableCurrencies(int id)
         {
-            return "value";
+            _currenciesApiServices.GetAvailableCurrencies();
+            return new Wallet();
+        }
+
+        // GET api/<WalletController>/<id>
+        [HttpGet("{id}")]
+        public Wallet Get(int id)
+        {
+            return _services.GetById(id);
         }
 
         // POST api/<WalletController>

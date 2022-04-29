@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CurrencyServices } from "../domain/service/CurrencyServices";
+import { CurrencyServices } from "../application/service/CurrencyServices";
 
 const currencyServices = new CurrencyServices();
 

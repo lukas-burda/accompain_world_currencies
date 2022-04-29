@@ -1,22 +1,22 @@
-﻿using accompain_world_currencies_Core.Domain.Interfaces;
-using accompain_world_currencies_Core.Domain.Models;
+﻿using accompain_world_currencies_WebAPI.Application.Interfaces;
+using accompain_world_currencies_WebAPI.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace accompain_world_currencies_Infraestructure.Data.Repositories
+namespace accompain_world_currencies_WebAPI.Data.Repositories
 {
     public class WalletRepository : IWalletRepository
     {
-        private static List<Wallet> wallets;
+        private List<Wallet> wallets;
 
         public Wallet Delete(int id)
         {
             try
             {
-                var a = this.GetById(id);
+                var a = GetById(id);
                 wallets.Remove(a);
                 return a;
             }
@@ -25,7 +25,7 @@ namespace accompain_world_currencies_Infraestructure.Data.Repositories
 
                 throw;
             }
-            
+
         }
 
         public Wallet GetById(int id)
@@ -52,7 +52,7 @@ namespace accompain_world_currencies_Infraestructure.Data.Repositories
         {
             try
             {
-                if(this.GetById(obj.Id) != null)
+                if (GetById(obj.Id) != null)
                 {
                     wallets.Remove(GetById(obj.Id));
                 }

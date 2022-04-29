@@ -9,8 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\accompain_world_currencies_Core\accompain_world_currencies_Core.csproj" />
-    <ProjectReference Include="..\accompain_world_currencies_Infraestructure\accompain_world_currencies_Infraestructure.csproj" />
+    <Folder Include="Domain\" />
   </ItemGroup>
 
 </Project>

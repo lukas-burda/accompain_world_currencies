@@ -71,7 +71,7 @@
             }
             
         },
-        "/currencyvaluebased/{baseCurrencyCode}/{CurrencyCode}": {
+        "/currencyconversion/{baseCurrencyCode}/{CurrencyCode}": {
             "get": {
                 "tags": ["Currency"],
                 "summary": "Converting currencies",
