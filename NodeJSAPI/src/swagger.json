@@ -52,9 +52,8 @@
                         }
                     },
                     {
-                        "name": "date US",
+                        "name": "date",
                         "in": "path",
-                        "required": true,
                         "schema": {
                             "type": "date"
                         }
@@ -71,7 +70,7 @@
             }
             
         },
-        "/currencyvaluebased/{baseCurrencyCode}/{CurrencyCode}": {
+        "/currencyconversion/{baseCurrencyCode}/{CurrencyCode}": {
             "get": {
                 "tags": ["Currency"],
                 "summary": "Converting currencies",
