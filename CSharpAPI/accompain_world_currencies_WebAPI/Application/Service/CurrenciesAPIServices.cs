@@ -4,12 +4,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace accompain_world_currencies_WebAPI.Application.Service
 {
     public class CurrenciesAPIServices : ICurrenciesApiServices
     {
-        async public void GetAvailableCurrencies()
+        public async Task<List<Currency>> GetAvailableCurrenciesAsync()
         {
             using var client = new HttpClient();
 
@@ -19,24 +20,100 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 
             var data = response.Content.ReadAsStringAsync();
 
-            Console.WriteLine(data);
+            dynamic json = JsonConvert.DeserializeObject(data.Result);
 
-            var json = JsonConvert.DeserializeObject(data.Result);
+            var currencyList = new List<Currency>();
 
-            Console.WriteLine(json);
+            foreach (var item in json)
+            {
+                foreach (var i in item)
+                {
+                    for (int x = 0; x < 209; x++)
+                    {
+                        currencyList.Add(new Currency
+                        {
+                            Name = i[x]["name"],
+                            Code = i[x]["value"]
+                        });
+                    }
+                }
+            }
 
-            //to-do
+            return currencyList;
 
         }
 
-        public Currency GetCurrenciesByDate(string basecurrencycode, string date)
+        public async Task<Wallet> GetCurrenciesByDate(string basecurrencycode, string date)
         {
-            throw new System.NotImplementedException();
+            using var client = new HttpClient();
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:3333/currenciesbydate/{basecurrencycode}/{date}");
+
+            var response = await client.SendAsync(request);
+
+            var data = response.Content.ReadAsStringAsync();
+
+            dynamic json = JsonConvert.DeserializeObject(data.Result);
+
+            var currencyList = new List<Currency>();
+
+            foreach (var item in json)
+            {
+                foreach (var i in item)
+                {
+                    for (int x = 0; x < 207; x++)
+                    {
+                        currencyList.Add(new Currency
+                        {
+                            Name = i[x]["name"],
+                            Code = i[x]["value"]
+                        });
+                    }
+                }
+            }
+
+            var wallet = new Wallet
+            {
+                Name = "Minha Carteira",
+                MoneyQuantity = 15610.50,
+                BasedCurrencyCode = basecurrencycode,
+                FavoriteCurrencyList = currencyList,
+                LastUpdate = Convert.ToDateTime(date)
+            };
+
+            return wallet;
+
         }
 
-        public Currency GetCurrencyConversion(string basecurrencycode, string currencycode)
+        public async Task<string> GetCurrencyConversion(string basecurrencycode, string currencycode)
         {
-            throw new System.NotImplementedException();
+            using var client = new HttpClient();
+
+            var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:3333/currencyconversion/{basecurrencycode}/{currencycode}");
+
+            var response = await client.SendAsync(request);
+
+            var data = response.Content.ReadAsStringAsync();
+
+            dynamic json = JsonConvert.DeserializeObject(data.Result);
+
+            var date = "";
+            var value = "";
+
+            foreach (var item in json)
+            {
+                foreach (var x in item)
+                {
+                    for (int y = 0; y < 1; y++)
+                    {
+                        date = x["date"];
+                        value = x[$"{currencycode}"];
+                    }
+                }   
+            }
+
+            return $"Conversão de {basecurrencycode} para {currencycode} em {date} no valor {value}";
+
         }
     }
 }

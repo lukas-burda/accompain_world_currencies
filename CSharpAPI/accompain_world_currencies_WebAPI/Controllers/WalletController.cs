@@ -2,6 +2,7 @@
 using accompain_world_currencies_WebAPI.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace accompain_world_currencies_WebAPI.Controllers
 {
@@ -21,36 +22,47 @@ namespace accompain_world_currencies_WebAPI.Controllers
         // GET api/<WalletController>/availablecurrencies
         
         [HttpGet("availablecurrencies")]
-        public string GetAvailableCurrencies()
+        public Task<List<Currency>> GetAvailableCurrencies()
         {
-            _currenciesApiServices.GetAvailableCurrencies();
-            return "";
+            return _currenciesApiServices.GetAvailableCurrenciesAsync();
         }
 
-        // GET api/<WalletController>/<id>
-        [HttpGet("{id}")]
-        public Wallet Get(int id)
+        [HttpGet("currenciesbydate/{basecurrencycode}/{date}")]
+        public Task<Wallet> GetCurrenciesByDate(string basecurrencycode, string date)
         {
-            return _services.GetById(id);
+            return _currenciesApiServices.GetCurrenciesByDate(basecurrencycode, date);
         }
 
-        // POST api/<WalletController>
-        [HttpPost]
-        public void Post([FromBody] Wallet value)
+        [HttpGet("currencyconversion/{basecurrencycode}/{CurrencyCode}")]
+        public Task<string> GetCurrencyConversion(string basecurrencycode, string CurrencyCode)
         {
-            
+            return _currenciesApiServices.GetCurrencyConversion(basecurrencycode, CurrencyCode);
         }
 
-        // PUT api/<WalletController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// GET api/<WalletController>/<id>
+        //[HttpGet("{id}")]
+        //public Wallet Get(int id)
+        //{
+        //    return _services.GetById(id);
+        //}
 
-        // DELETE api/<WalletController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// POST api/<WalletController>
+        //[HttpPost]
+        //public void Post([FromBody] Wallet value)
+        //{
+
+        //}
+
+        //// PUT api/<WalletController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
+
+        //// DELETE api/<WalletController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
