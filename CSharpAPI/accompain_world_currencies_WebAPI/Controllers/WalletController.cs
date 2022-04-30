@@ -39,30 +39,32 @@ namespace accompain_world_currencies_WebAPI.Controllers
             return _currenciesApiServices.GetCurrencyConversion(basecurrencycode, CurrencyCode);
         }
 
-        //// GET api/<WalletController>/<id>
-        //[HttpGet("{id}")]
-        //public Wallet Get(int id)
-        //{
-        //    return _services.GetById(id);
-        //}
+        // GET api/<WalletController>/<id>
+        [HttpGet("{id}")]
+        public Wallet Get(int id)
+        {
+            return _services.GetById(id);
+        }
 
-        //// POST api/<WalletController>
-        //[HttpPost]
-        //public void Post([FromBody] Wallet value)
-        //{
+        // POST api/<WalletController>
+        [HttpPost]
+        public void Post([FromBody] Wallet value)
+        {
+            _services.Save(value);
+        }
 
-        //}
+        // PUT api/<WalletController>/5
+        [HttpPut]
+        public void Put([FromBody] Wallet value)
+        {
+            _services.Update(value);
+        }
 
-        //// PUT api/<WalletController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<WalletController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE api/<WalletController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _services.Delete(id);
+        }
     }
 }

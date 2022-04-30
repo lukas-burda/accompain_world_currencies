@@ -30,7 +30,7 @@ namespace accompain_world_currencies_WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IWalletServices, WalletServices>();
-            services.AddTransient<IWalletRepository, WalletRepository>();
+            services.AddSingleton<IWalletRepository, WalletRepository>();
             services.AddTransient<ICurrenciesApiServices, CurrenciesAPIServices>();
 
             services.AddControllers();
