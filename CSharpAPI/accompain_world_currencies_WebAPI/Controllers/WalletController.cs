@@ -2,6 +2,7 @@
 using accompain_world_currencies_WebAPI.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace accompain_world_currencies_WebAPI.Controllers
 {
@@ -21,9 +22,8 @@ namespace accompain_world_currencies_WebAPI.Controllers
         // GET api/<WalletController>/availablecurrencies
         
         [HttpGet("availablecurrencies")]
-        public string[] GetAvailableCurrencies()
+        public Task<List<Currency>> GetAvailableCurrencies()
         {
-            _currenciesApiServices.GetAvailableCurrenciesAsync();
             return _currenciesApiServices.GetAvailableCurrenciesAsync();
         }
 

@@ -4,12 +4,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace accompain_world_currencies_WebAPI.Application.Service
 {
     public class CurrenciesAPIServices : ICurrenciesApiServices
     {
-        public async System.Threading.Tasks.Task<string[]> GetAvailableCurrenciesAsync()
+        public async Task<List<Currency>> GetAvailableCurrenciesAsync()
         {
             using var client = new HttpClient();
 
@@ -19,11 +20,25 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 
             var data = response.Content.ReadAsStringAsync();
 
-            var json = JsonConvert.DeserializeObject(data.Result);
+            dynamic json = JsonConvert.DeserializeObject(data.Result);
 
+            var currencyList = new List<Currency>();
 
+            foreach (var item in json)
+            {
+                foreach (var i in item)
+                {
+                    for (int x = 0; x < 209; x++)
+                    {
+                        currencyList.Add(new Currency { 
+                            Name = i[x]["name"],
+                            Code = i[x]["value"]
+                        });
+                    }
+                }
+            }
 
-            return ;
+            return currencyList;
 
         }
 
