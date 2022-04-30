@@ -27,6 +27,18 @@ namespace accompain_world_currencies_WebAPI.Controllers
             return _currenciesApiServices.GetAvailableCurrenciesAsync();
         }
 
+        [HttpGet("currenciesbydate/{basecurrencycode}/{date}")]
+        public Task<Wallet> GetCurrenciesByDate(string basecurrencycode, string date)
+        {
+            return _currenciesApiServices.GetCurrenciesByDate(basecurrencycode, date);
+        }
+
+        [HttpGet("currencyconversion/{basecurrencycode}/{CurrencyCode}")]
+        public Task<string> GetCurrencyConversion(string basecurrencycode, string CurrencyCode)
+        {
+            return _currenciesApiServices.GetCurrencyConversion(basecurrencycode, CurrencyCode);
+        }
+
         //// GET api/<WalletController>/<id>
         //[HttpGet("{id}")]
         //public Wallet Get(int id)
@@ -38,7 +50,7 @@ namespace accompain_world_currencies_WebAPI.Controllers
         //[HttpPost]
         //public void Post([FromBody] Wallet value)
         //{
-            
+
         //}
 
         //// PUT api/<WalletController>/5

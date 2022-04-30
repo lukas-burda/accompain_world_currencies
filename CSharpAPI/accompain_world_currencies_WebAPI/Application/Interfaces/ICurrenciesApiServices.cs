@@ -7,8 +7,8 @@ namespace accompain_world_currencies_WebAPI.Application.Interfaces
     public interface ICurrenciesApiServices
     {
         public Task<List<Currency>> GetAvailableCurrenciesAsync();
-        public Currency GetCurrenciesByDate(string basecurrencycode, string date);
-        public Currency GetCurrencyConversion(string basecurrencycode, string currencycode);
+        public Task<Wallet> GetCurrenciesByDate(string basecurrencycode, string date);
+        public Task<string> GetCurrencyConversion(string basecurrencycode, string currencycode);
 
     }
 }
