@@ -13,6 +13,7 @@ export class CurrencyServices implements ICurencyServices {
     TransformResponseList(data: String): Currency[] {
         // For GET/currenciesbydate response
         if (Object.keys(data)[0] == 'date') {
+            currencies = [];
             var list = Object.values(data)
             var keys = Object.keys(list[1]);
             var names = Object.values(list[1]);
@@ -35,7 +36,6 @@ export class CurrencyServices implements ICurencyServices {
             }
             return currencies;
         }
-        currencies=[]
     }
 
     async GetCurrencyListsByDate(base: string, date: string): Promise<Currency[]> {
