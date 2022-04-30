@@ -12,12 +12,13 @@ namespace accompain_world_currencies_WebAPI.Data.Repositories
     {
         private List<Wallet> wallets = new List<Wallet>();
 
+
         public Wallet Delete(int id)
         {
             try
             {
                 var a = GetById(id);
-                wallets.Remove(a);
+                wallets.RemoveAll(x => x.Id == id);
                 return a;
             }
             catch (Exception)
@@ -30,8 +31,15 @@ namespace accompain_world_currencies_WebAPI.Data.Repositories
 
         public Wallet GetById(int id)
         {
-            var x = this.wallets.FirstOrDefault(x => x.Id == id);
-            return wallets.Find(x => x.Id == id);
+            try
+            {
+                return wallets.Find(x => x.Id == id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Wallet Save(Wallet obj)

@@ -10,6 +10,11 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 {
     public class CurrenciesAPIServices : ICurrenciesApiServices
     {
+        private readonly IWalletRepository _repository;
+        public CurrenciesAPIServices(IWalletRepository walletRepository)
+        {
+            _repository = walletRepository;
+        }
         public async Task<List<Currency>> GetAvailableCurrenciesAsync()
         {
             using var client = new HttpClient();
@@ -74,12 +79,15 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 
             var wallet = new Wallet
             {
+                Id = 0,
                 Name = "Minha Carteira",
                 MoneyQuantity = 15610.50,
                 BasedCurrencyCode = basecurrencycode,
                 FavoriteCurrencyList = currencyList,
                 LastUpdate = Convert.ToDateTime(date)
             };
+
+            _repository.Save(wallet);
 
             return wallet;
 

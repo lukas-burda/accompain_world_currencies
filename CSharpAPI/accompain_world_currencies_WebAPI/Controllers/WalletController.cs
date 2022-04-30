@@ -64,6 +64,7 @@ namespace accompain_world_currencies_WebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _services.Delete(id);
         }
     }
 }
