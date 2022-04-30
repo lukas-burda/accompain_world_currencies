@@ -10,7 +10,7 @@ namespace accompain_world_currencies_WebAPI.Data.Repositories
 {
     public class WalletRepository : IWalletRepository
     {
-        private List<Wallet> wallets;
+        private List<Wallet> wallets = new List<Wallet>();
 
         public Wallet Delete(int id)
         {
@@ -30,6 +30,7 @@ namespace accompain_world_currencies_WebAPI.Data.Repositories
 
         public Wallet GetById(int id)
         {
+            var x = this.wallets.FirstOrDefault(x => x.Id == id);
             return wallets.Find(x => x.Id == id);
         }
 
@@ -55,6 +56,7 @@ namespace accompain_world_currencies_WebAPI.Data.Repositories
                 if (GetById(obj.Id) != null)
                 {
                     wallets.Remove(GetById(obj.Id));
+                    wallets.Add(obj);
                 }
                 return obj;
             }
