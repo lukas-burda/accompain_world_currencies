@@ -7,7 +7,7 @@ const external_url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/';
 const date = 'latest/'
 
 var currency: Currency
-var string: string;
+var currencyValue: string;
 var currencies: Currency[] = [];
 export class CurrencyServices implements ICurencyServices {
     TransformResponseList(data: String): Currency[] {
@@ -18,7 +18,7 @@ export class CurrencyServices implements ICurencyServices {
             var names = Object.values(list[1]);
 
             for (let index = 0; index < keys.length; index++) {
-                currency = new Currency(names[index], keys[index])
+                currency = new Currency(keys[index], names[index]);
                 currencies.push(currency);
             }
             return currencies;
@@ -41,35 +41,35 @@ export class CurrencyServices implements ICurencyServices {
     async GetCurrencyListsByDate(base: string, date: string): Promise<Currency[]> {
         await axios.get(external_url + date + '/currencies/' + base + '.json')
             .then(async function (res: any) {
-                return string = res.data;
+                return currencyValue = res.data;
             })
             .catch(function (error: Error) {
-                return string = error.message;
+                return currencyValue = error.message;
             })
-        return this.TransformResponseList(string);
+        return this.TransformResponseList(currencyValue);
     }
 
-    async GetCurrencyByCode(base: String, code: String) {
+    async GetCurrencyByCode(base: string, code: string) {
         await axios.get(external_url + date + '/currencies/' + base + '/' + code + '.json')
             .then(async function (res: any) {
-                return string = res.data;
+                return currencyValue = res.data;
             })
             .catch(function (error: Error) {
-                return string = error.message;
+                return currencyValue = error.message;
             })
-        return string;
+        return currencyValue;
     }
 
     async GetCurrencyLists(): Promise<Currency[]> {
 
         await axios.get(external_url + date + 'currencies.min.json')
             .then(async function (res: any) {
-                return string = res.data;
+                return currencyValue = res.data;
             })
             .catch(function (error: Error) {
-                return string = error.message;
+                return currencyValue = error.message;
             })
 
-        return this.TransformResponseList(string);
+        return this.TransformResponseList(currencyValue);
     }
 }

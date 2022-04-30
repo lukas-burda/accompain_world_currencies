@@ -52,9 +52,8 @@
                         }
                     },
                     {
-                        "name": "date US",
+                        "name": "date",
                         "in": "path",
-                        "required": true,
                         "schema": {
                             "type": "date"
                         }
