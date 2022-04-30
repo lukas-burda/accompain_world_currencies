@@ -9,7 +9,7 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 {
     public class CurrenciesAPIServices : ICurrenciesApiServices
     {
-        async public void GetAvailableCurrencies()
+        public async System.Threading.Tasks.Task<string[]> GetAvailableCurrenciesAsync()
         {
             using var client = new HttpClient();
 
@@ -19,13 +19,11 @@ namespace accompain_world_currencies_WebAPI.Application.Service
 
             var data = response.Content.ReadAsStringAsync();
 
-            Console.WriteLine(data);
-
             var json = JsonConvert.DeserializeObject(data.Result);
 
-            Console.WriteLine(json);
 
-            //to-do
+
+            return ;
 
         }
 
