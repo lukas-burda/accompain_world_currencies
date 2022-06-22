@@ -18,6 +18,6 @@ export class CurrencyController{
     }
 
     async PostQueueMessage(req:Request, res:Response){
-        res.status(200).json({ data: await azureQueueServices.SubscriptCurrencyList() })
+        res.status(200).json({ data: await azureQueueServices.SubscriptCurrencyList(req.params.baseCurrencyCode,req.params.date) })
     }
 }
