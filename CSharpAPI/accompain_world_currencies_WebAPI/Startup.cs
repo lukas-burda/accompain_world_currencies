@@ -32,6 +32,7 @@ namespace accompain_world_currencies_WebAPI
             services.AddTransient<IWalletServices, WalletServices>();
             services.AddSingleton<IWalletRepository, WalletRepository>();
             services.AddTransient<ICurrenciesApiServices, CurrenciesAPIServices>();
+            services.AddTransient<IRabbitQueueServices, RabbitQueueServices>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

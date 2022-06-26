@@ -1,5 +1,6 @@
 ﻿using accompain_world_currencies_WebAPI.Application.Interfaces;
 using accompain_world_currencies_WebAPI.Application.Models;
+using accompain_world_currencies_WebAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,15 +13,23 @@ namespace accompain_world_currencies_WebAPI.Controllers
     {
         private readonly IWalletServices _services;
         private readonly ICurrenciesApiServices _currenciesApiServices;
+        private readonly IRabbitQueueServices _rabbitServices;
 
-        public WalletController(IWalletServices walletServices, ICurrenciesApiServices currenciesApiServices)
+        public WalletController(IWalletServices walletServices, ICurrenciesApiServices currenciesApiServices, IRabbitQueueServices rabbitQueueServices)
         {
             _services = walletServices;
             _currenciesApiServices = currenciesApiServices;
+            _rabbitServices = rabbitQueueServices;
         }
 
         // GET api/<WalletController>/availablecurrencies
-        
+
+        [HttpGet("enqueuedcurrencies")]
+        public CosmosCurrencyValues GetEnqueuedCurrencies() 
+        {
+            return _rabbitServices.ConsumeQueue();
+        }
+
         [HttpGet("availablecurrencies")]
         public Task<List<Currency>> GetAvailableCurrencies()
         {
