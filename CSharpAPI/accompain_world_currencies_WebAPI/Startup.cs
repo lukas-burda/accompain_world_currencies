@@ -30,8 +30,20 @@ namespace accompain_world_currencies_WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IWalletServices, WalletServices>();
-            services.AddSingleton<IWalletRepository, WalletRepository>();
             services.AddTransient<ICurrenciesApiServices, CurrenciesAPIServices>();
+<<<<<<< Updated upstream
+=======
+            services.AddTransient<IRabbitQueueServices, RabbitQueueServices>();
+
+            services.AddSingleton<IWalletRepository, WalletRepository>();
+            services.AddSingleton<ICurrencyValueRepository, CurrencyValueRepository>();
+
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+>>>>>>> Stashed changes
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

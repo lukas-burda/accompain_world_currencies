@@ -20,7 +20,17 @@ namespace accompain_world_currencies_WebAPI.Controllers
         }
 
         // GET api/<WalletController>/availablecurrencies
+<<<<<<< Updated upstream
         
+=======
+
+        [HttpGet("enqueuedcurrencies")]
+        public CurrencyValues GetEnqueuedCurrencies() 
+        {
+            return _rabbitServices.ConsumeQueue();
+        }
+
+>>>>>>> Stashed changes
         [HttpGet("availablecurrencies")]
         public Task<List<Currency>> GetAvailableCurrencies()
         {
