@@ -34,6 +34,11 @@ namespace accompain_world_currencies_WebAPI
             services.AddTransient<ICurrenciesApiServices, CurrenciesAPIServices>();
             services.AddTransient<IRabbitQueueServices, RabbitQueueServices>();
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

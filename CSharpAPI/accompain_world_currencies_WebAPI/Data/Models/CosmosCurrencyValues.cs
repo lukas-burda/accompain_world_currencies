@@ -6,7 +6,6 @@ namespace accompain_world_currencies_WebAPI.Data.Models
 {
     public class CosmosCurrencyValues
     {
-        public List<Currency> Currencies { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public List<Values> Currencies { get; set; }
     }
 }
